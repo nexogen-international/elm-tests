@@ -112,7 +112,7 @@ update msg model =
             ( { model | items = items }, Cmd.none )
 
         Reset ->
-            ( Model 0 [], Cmd.none )
+            init ()
 
         Roll ->
             ( model, newAnimalsCommand )
