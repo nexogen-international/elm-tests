@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 
-js="www/elm.js"
-minjs="www/elm.min.js"
+js="public/elm.js"
+minjs="public/elm.min.js"
 
 elm make --optimize --output $js src/Main.elm
 

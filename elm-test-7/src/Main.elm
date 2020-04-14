@@ -84,7 +84,7 @@ viewCard name description =
     article [ class "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10" ]
         [ div [ class "tc" ]
             [ img
-                [ src (String.concat [ "img/", String.toLower name, ".svg" ])
+                [ src (String.concat [ "assets/images/", String.toLower name, ".svg" ])
                 , class "br-100 h3 w3 dib"
                 , title name
                 ]
