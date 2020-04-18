@@ -1,9 +1,54 @@
-module App.Animal.View exposing (view)
+module Animals exposing (Model, Msg(..), update, view, randomAnimalsCmd)
 
-import App.Animal.Messages exposing (Msg(..))
-import App.Animal.Model exposing (Animal(..), Model)
 import Html exposing (Html, article, div, h1, hr, img, p, text)
 import Html.Attributes exposing (class, src, title)
+import Random
+import Utils exposing (toListGenerator4)
+
+
+
+-- Model
+
+
+type Animal
+    = Raccoon
+    | Dog
+    | Cat
+    | Camel
+    | Rabbit
+    | Monkey
+
+
+type alias Model =
+    List Animal
+
+
+
+-- Messages
+
+
+type Msg
+    = NoOp
+    | Assign Model
+
+
+
+-- Update
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+        Assign newModel ->
+            ( newModel, Cmd.none )
+
+
+
+-- View
+
 
 view : Model -> Html Msg
 view model =
@@ -84,3 +129,21 @@ animalToDescription animal =
 
         Monkey ->
             "Monkey is a common name that may refer to groups or species of mammals, in part, the simians of infraorder Simiiformes. The term is applied descriptively to groups of primates."
+
+
+
+-- Commands
+
+
+randomAnimalsCmd : Cmd Msg
+randomAnimalsCmd =
+    Random.generate Assign (toListGenerator4 animalGenerator)
+
+
+
+-- Helpers
+
+
+animalGenerator : Random.Generator Animal
+animalGenerator =
+    Random.uniform Raccoon [ Dog, Cat, Camel, Rabbit, Monkey ]
