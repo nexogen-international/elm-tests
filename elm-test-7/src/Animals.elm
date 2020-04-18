@@ -1,4 +1,4 @@
-module Animals exposing (Model, Msg(..), update, view, randomAnimalsCmd)
+module Animals exposing (Model, Msg(..), update, view)
 
 import Html exposing (Html, article, div, h1, hr, img, p, text)
 import Html.Attributes exposing (class, src, title)
@@ -30,6 +30,8 @@ type alias Model =
 type Msg
     = NoOp
     | Assign Model
+    | Reset
+    | Roll
 
 
 
@@ -42,8 +44,15 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+
         Assign newModel ->
             ( newModel, Cmd.none )
+
+        Reset ->
+            ( [], Cmd.none )
+
+        Roll ->
+            ( model, randomAnimalsCmd )
 
 
 
